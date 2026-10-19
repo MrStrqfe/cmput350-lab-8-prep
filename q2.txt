@@ -1,0 +1,30 @@
+800x600 center at (400, 300)
+Rectangle: 
+TL = (200, 150)
+BL = (200, 450)
+BR = (600, 450)
+TR = (600, 150)
+
+1) Counterclock-wise order
+Top Left Half of the Quad: (200, 150) -> (200, 450) -> (600, 150)  
+Bottom Right Half of the Quad: (200, 450) -> (600, 450) -> (600, 150) 
+
+2) 
+Instead of listing 6 positions, store the 4 corners once 
+(0 = topleft, 1 = bottomleft, 2 = bottomright, 3= topright) and
+describe the triangles with indices {0, 1, 3, 1, 2, 3}. Without indices,
+we store 6 positions, which is 12 floats x 4 bytes = 48 bytes. With indices,
+we store 4 positions (8 floats x 4 = 32 bytes) plus 6 indices x 4 = 24 bytes, for
+56 bytes total. So for this quad, the index buffer is actually worse. With doubles
+(8 bytes each), its 96 bytes vs 88 bytes, so the index buffer is more memory efficient.
+In conclusion, index buffers save memory when vertices are big or shared by many triangles.
+For one small quad with floats, they cost more than they save.
+
+3) (500, 301) = (x, y)
+u = (x - left edge) / width
+v = (y - top edge) / height
+
+u = (500 - 200) / 400 = 0.75
+v = (301 - 150) / 300 = 0.503
+
+(500, 301) in (u, v) = (0.75, 0.503)

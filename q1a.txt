@@ -1,0 +1,2 @@
+1) Increasing theta when the y-axis is pointing down does a clockwise rotation,
+while when the y-axis pointing down, it performs a counterclockwise rotation.
